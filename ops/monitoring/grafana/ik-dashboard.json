@@ -1,0 +1,64 @@
+{
+  "title": "IK Engine - Core",
+  "timezone": "browser",
+  "schemaVersion": 38,
+  "version": 1,
+  "refresh": "30s",
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Readiness p95 (ms)",
+      "datasource": { "type": "prometheus", "uid": "PROM_DS" },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(api_ready_ms_bucket[5m])) by (le))",
+          "legendFormat": "p95"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "ms" } }
+    },
+    {
+      "type": "timeseries",
+      "title": "Readiness rate (count/s)",
+      "datasource": { "type": "prometheus", "uid": "PROM_DS" },
+      "targets": [
+        {
+          "expr": "sum(rate(api_ready_ms_count[5m]))",
+          "legendFormat": "count/s"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Image backlog",
+      "datasource": { "type": "prometheus", "uid": "PROM_DS" },
+      "targets": [
+        {
+          "expr": "ik_image_processing_backlog"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Rate limit denied (5m)",
+      "datasource": { "type": "prometheus", "uid": "PROM_DS" },
+      "targets": [
+        {
+          "expr": "increase(rate_limit_denied_total[5m])",
+          "legendFormat": "denied"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Metrics exposed rate",
+      "datasource": { "type": "prometheus", "uid": "PROM_DS" },
+      "targets": [
+        {
+          "expr": "rate(metrics_exposed_total[5m])",
+          "legendFormat": "exposed/s"
+        }
+      ]
+    }
+  ]
+}

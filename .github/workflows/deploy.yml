@@ -1,0 +1,101 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma client
+        run: npm run prisma:generate
+
+      - name: Validate environment
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+          STORAGE_PROVIDER: ${{ secrets.STORAGE_PROVIDER }}
+          S3_BUCKET: ${{ secrets.S3_BUCKET }}
+          S3_REGION: ${{ secrets.S3_REGION }}
+          S3_ACCESS_KEY_ID: ${{ secrets.S3_ACCESS_KEY_ID }}
+          S3_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY }}
+          UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+          UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+        run: node scripts/validate-env.js
+
+      - name: Apply migrations
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: npx prisma migrate deploy
+
+      - name: Build
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+          STORAGE_PROVIDER: ${{ secrets.STORAGE_PROVIDER }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          SENTRY_RELEASE: ${{ github.sha }}
+        run: npm run build
+
+      - name: Pre-deploy smoke (local ephemeral server)
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+          SENTRY_RELEASE: ${{ github.sha }}
+        run: |
+          node scripts/smoke-local.js --base http://127.0.0.1:3001 --port 3001 --db ${{ secrets.DATABASE_URL }} --secret ${{ secrets.NEXTAUTH_SECRET }}
+
+      - name: Install Vercel CLI
+        run: npm i -g vercel@latest
+
+      - name: Vercel Pull (project & env)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+
+      - name: Vercel Build (prebuilt output)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          vercel build --prod --token=$VERCEL_TOKEN
+
+      - name: Vercel Deploy (use prebuilt)
+        id: vercel_deploy
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          URL=$(vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN)
+          echo "prod_url=$URL" >> $GITHUB_OUTPUT
+
+      - name: Post-deploy readiness check
+        run: |
+          echo "Hit production readiness endpoint";
+          curl -sSf ${{ secrets.NEXTAUTH_URL }}/api/ready
+
+      - name: Post-deploy smoke against live URL
+        env:
+          SENTRY_RELEASE: ${{ github.sha }}
+        run: |
+          node scripts/smoke-local.js --base ${{ secrets.NEXTAUTH_URL }} --port 443 --db ${{ secrets.DATABASE_URL }} --secret ${{ secrets.NEXTAUTH_SECRET }}

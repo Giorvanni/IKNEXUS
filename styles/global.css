@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --container-inline: clamp(1.25rem, 4vw, 3.25rem);
+  --section-spacing-tight: clamp(2.5rem, 4vw, 3.5rem);
+  --section-spacing-default: clamp(3.5rem, 6vw, 5.5rem);
+  --section-spacing-loose: clamp(4.5rem, 8vw, 7rem);
+  --section-offset-tight: clamp(1.5rem, 3vw, 2.75rem);
+  --section-offset-default: clamp(2.25rem, 4vw, 3.5rem);
+  --section-offset-loose: clamp(3rem, 5vw, 4.5rem);
+  --heading-display: clamp(2.5rem, 3vw + 1rem, 3.75rem);
+  --heading-large: clamp(2rem, 2vw + 1rem, 3rem);
+  --heading-spacing: clamp(1rem, 2vw, 2rem);
+  --paragraph-max-width: min(65ch, 100%);
+}
+
+html { scroll-behavior: smooth; }
+body { @apply bg-white text-slate-800 antialiased; }
+.dark body { @apply bg-slate-900 text-slate-100; }
+
+.container {
+  @apply mx-auto max-w-7xl;
+  padding-inline: var(--container-inline);
+}
+
+.section-title {
+  @apply font-serif font-semibold tracking-tight mb-6;
+  font-size: var(--heading-large);
+  line-height: 1.15;
+  text-wrap: balance;
+  margin-bottom: var(--heading-spacing);
+}
+
+.hero-title {
+  font-size: var(--heading-display);
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.subtle {
+  @apply text-slate-600 dark:text-slate-400;
+  max-width: var(--paragraph-max-width);
+}
+
+.card { @apply rounded-lg bg-white dark:bg-slate-800 shadow-card p-6 transition hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400; }
+
+.btn-primary { @apply inline-flex items-center gap-2 rounded-md bg-brand-700 px-6 py-3 text-sm font-medium text-white shadow-sm hover:bg-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-700; }
+.btn-secondary { @apply inline-flex items-center gap-2 rounded-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-6 py-3 text-sm font-medium text-slate-700 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-700; }
+
+/* Headings use serif for a luxurious tone */
+h1, h2, h3, .heading-serif { @apply font-serif; }
+
+/* Section vertical rhythm */
+section { @apply scroll-mt-20; }
+
+.footer-link { @apply text-sm text-slate-600 dark:text-slate-400 hover:text-brand-600; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

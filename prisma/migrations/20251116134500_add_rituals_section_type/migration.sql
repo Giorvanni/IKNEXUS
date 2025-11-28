@@ -1,0 +1,3 @@
+-- SQLite stores enums as plain TEXT, so adding "RITUALS" to the PageSectionType
+-- union does not require a schema change. This migration records the change so
+-- that Prisma migrate history stays in sync.

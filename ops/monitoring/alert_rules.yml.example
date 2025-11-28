@@ -1,0 +1,71 @@
+groups:
+  - name: ik_engine_latency
+    rules:
+      - alert: APIReadyHighLatency95p
+        expr: histogram_quantile(0.95, sum by (le) (rate(api_ready_ms_bucket[5m]))) > 750
+        for: 2m
+        labels:
+          severity: warning
+          category: latency
+        annotations:
+          summary: 95th percentile readiness latency high
+          description: Readiness endpoint 95p latency >750ms for 2m.
+
+      - alert: APIReadyHighLatency95pCritical
+        expr: histogram_quantile(0.95, sum by (le) (rate(api_ready_ms_bucket[5m]))) > 1500
+        for: 2m
+        labels:
+          severity: critical
+          category: latency
+        annotations:
+          summary: 95th percentile readiness latency critical
+          description: Readiness endpoint 95p latency >1500ms for 2m.
+
+  - name: ik_engine_errors
+    rules:
+      - alert: ImageWorkerErrorsSpike
+        expr: increase(image.worker.error_total[10m]) > 5
+        for: 5m
+        labels:
+          severity: warning
+          category: errors
+        annotations:
+          summary: Image worker error spike
+          description: >
+            More than 5 image worker errors in 10m window; check processing logs and S3 access.
+
+  - name: ik_engine_cache
+    rules:
+      - alert: BrandCacheMissRatioHigh
+        expr: (
+          increase(brand.cache.miss_total[15m])
+          /
+          clamp_min(increase(brand.cache.hit_total[15m]) + increase(brand.cache.miss_total[15m]), 1)
+        ) > 0.4
+        for: 5m
+        labels:
+          severity: warning
+          category: cache
+        annotations:
+          summary: Brand cache miss ratio high
+          description: >
+            Brand cache miss ratio >40% over 15m; indicates cache churn or domain mismatch.
+
+  - name: ik_engine_traffic
+    rules:
+      - alert: LowRequests
+        expr: sum(increase(http.request.total[30m])) < 10
+        for: 30m
+        labels:
+          severity: info
+          category: traffic
+        annotations:
+          summary: Low request volume
+          description: Less than 10 requests in 30m. May indicate upstream routing issues.
+
+# Usage:
+# 1. Mount this file into Prometheus using rule_files:
+#    rule_files:
+#      - alert_rules.yml
+# 2. Adjust thresholds to your SLOs. For initial prod run, tune after collecting baseline data.
+# 3. Ensure the metric names used exist; counters are suffixed with _total in exposition.

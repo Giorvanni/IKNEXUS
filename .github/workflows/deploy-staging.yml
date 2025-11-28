@@ -1,0 +1,83 @@
+name: Deploy Staging
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ staging ]
+
+jobs:
+  deploy-staging:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma client
+        run: npm run prisma:generate
+
+      - name: Apply migrations (staging)
+        if: ${{ env.DATABASE_URL != '' }}
+        env:
+          DATABASE_URL: ${{ secrets.STAGING_DATABASE_URL || secrets.DATABASE_URL }}
+        run: npx prisma migrate deploy
+
+      - name: Build (staging env)
+        env:
+          DATABASE_URL: ${{ secrets.STAGING_DATABASE_URL || secrets.DATABASE_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          NEXTAUTH_URL: ${{ secrets.STAGING_URL || secrets.NEXTAUTH_URL }}
+          STORAGE_PROVIDER: ${{ secrets.STORAGE_PROVIDER }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          SENTRY_RELEASE: ${{ github.sha }}
+        run: npm run build
+
+      - name: Pre-deploy smoke (local ephemeral)
+        env:
+          DATABASE_URL: ${{ secrets.STAGING_DATABASE_URL || secrets.DATABASE_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          NEXTAUTH_URL: ${{ secrets.STAGING_URL || secrets.NEXTAUTH_URL }}
+          SENTRY_RELEASE: ${{ github.sha }}
+        run: |
+          node scripts/smoke-local.js --base http://127.0.0.1:3002 --port 3002 --db ${{ secrets.STAGING_DATABASE_URL || secrets.DATABASE_URL }} --secret ${{ secrets.NEXTAUTH_SECRET }}
+
+      - name: Install Vercel CLI
+        run: npm i -g vercel@latest
+
+      - name: Vercel Pull (staging)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
+
+      - name: Vercel Build (preview)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          vercel build --token=$VERCEL_TOKEN
+
+      - name: Vercel Deploy (use prebuilt preview)
+        id: vercel_preview
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          URL=$(vercel deploy --prebuilt --token=$VERCEL_TOKEN)
+          echo "preview_url=$URL" >> $GITHUB_OUTPUT
+
+      - name: Post-deploy smoke (preview URL)
+        if: steps.vercel_preview.outputs.preview_url != ''
+        env:
+          SENTRY_RELEASE: ${{ github.sha }}
+        run: |
+          node scripts/smoke.js --base ${{ steps.vercel_preview.outputs.preview_url }}

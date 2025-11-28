@@ -1,0 +1,33 @@
+{
+  "kicker": "Studio Nieuws",
+  "intro": "Gebruik dit artikel om een verhaal te delen over wat je in de studio ervaart. Vervang de tekst in de secties met je eigen inzichten en voeg foto's toe via de cover afbeelding.",
+  "sections": [
+    {
+      "heading": "Waarom dit onderwerp belangrijk is",
+      "body": "Beschrijf in een paar alinea’s waarom dit thema relevant is voor jouw cliënten. Wat merk je in de praktijk? Welke signalen zie je terug tijdens rituelen of trajecten?"
+    },
+    {
+      "heading": "Wat iemand ervaart in de studio",
+      "body": "Deel hoe een behandeling of traject verloopt. Schets de stappen en vertel wat de cliënt tijdens de sessie voelt. Gebruik concrete voorbeelden uit je praktijk."
+    },
+    {
+      "heading": "Tips voor thuis",
+      "body": "Sluit af met een korte routine of reflectie oefening. Nodig de lezer uit om contact op te nemen als ze begeleiding willen."
+    }
+  ],
+  "highlight": {
+    "text": "\"Vul hier een quote van jezelf of een client in. Houd het persoonlijk en schrijf in de ik-vorm.\"",
+    "attribution": "Naam of rol"
+  },
+  "outro": "Eindig met een uitnodiging om een sessie te boeken of een vraag te stellen. Voeg eventueel een link toe naar een ritueel of het contactformulier.",
+  "resources": [
+    {
+      "label": "Plan een ritueel",
+      "href": "/contact"
+    },
+    {
+      "label": "Bekijk alle rituelen",
+      "href": "/rituelen"
+    }
+  ]
+}

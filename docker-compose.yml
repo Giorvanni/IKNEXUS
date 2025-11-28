@@ -1,0 +1,41 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: ik_engine
+    ports:
+      - '5432:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
+
+  app:
+    build: .
+    depends_on:
+      - db
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/ik_engine?schema=public
+      NEXTAUTH_SECRET: change_me_in_prod
+      NEXTAUTH_URL: http://localhost:3000
+      STORAGE_PROVIDER: local
+      # Uncomment and set for S3
+      # S3_BUCKET: your-bucket
+      # S3_REGION: your-region
+      # S3_ACCESS_KEY_ID: your-key
+      # S3_SECRET_ACCESS_KEY: your-secret
+      # Redis (optional if using Upstash)
+      # UPSTASH_REDIS_REST_URL: http://redis:6379
+      # UPSTASH_REDIS_REST_TOKEN: dummy
+    ports:
+      - '3000:3000'
+
+volumes:
+  db_data:

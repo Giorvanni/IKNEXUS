@@ -1,0 +1,22 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: ik_engine_app
+    metrics_path: /api/metrics
+    scheme: http
+    # Static target example (replace with service discovery, e.g., Kubernetes, ECS, or Docker SD)
+    static_configs:
+      - targets: ['localhost:3000']
+        labels:
+          env: dev
+    # Optional relabeling if using HTTPS behind reverse proxy; adjust as needed.
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+
+# NOTE:
+# - For production behind TLS use scheme: https and ensure certs are trusted by Prometheus.
+# - If the app is exposed via a path prefix or ingress, keep metrics_path exactly '/api/metrics'.
+# - Histogram buckets exposed follow the pattern: <metric>_ms_bucket, e.g. api_ready_ms_bucket.

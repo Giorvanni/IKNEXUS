@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "home": "Home",
+    "treatments": "Behandelingen",
+    "professionals": "Professionals",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "Welkom bij IK | Iris Kooij",
+    "subtitle": "Natuurlijke Beauty en Fascia Behandelingen",
+    "hero": "Beleef de Award Winning fascia behandeling van Gantke®!",
+    "cta": "Meer info",
+    "booking": "Afspraak maken",
+    "usp": "Als enige Gantke Fascia therapeut in de Haarlemmer kunt u bij IK terecht voor deze ongekende behandeling!",
+    "problem1": "Je zou wel willen schreeuwen, al die spanning in je lijf.",
+    "problem2": "De ene na de andere behandeling … en nog steeds heb je het gevoel dat niets is opgelost.",
+    "problem3": "Het kost je zoveel tijd. Kostbare tijd welke je liever aan de leuke dingen in het leven zou willen besteden.",
+    "solution": "Met de Gantke Fascia Therapie begeleid ik je op je weg naar meer bewegingsvrijheid.",
+    "solutionDetails": "Na een lichaamsstructuur analyse gaan we, in een proces, aan het werk met de oorzaak van de klachten. Stap voor stap weer de dingen kunnen doen waar je plezier aan beleeft.",
+    "cta2": "Klinkt het interessant en wil je weten wat de Gantke Fascia therapie in jouw leven zou kunnen betekenen? Stuur me een mail en dan neem ik zo spoedig mogelijk contact met je op!",
+    "featuresTitle": "IK | Onderscheidend in de wereld van uiterlijke verzorging!",
+    "feature1": "Biologisch gecertificeerde producten",
+    "feature2": "Geen Microplastics",
+    "feature3": "Fairtrade",
+    "feature4": "Geen Parabenen of Chemische toevoegingen",
+    "feature5": "Milieubewuste medisch pedicure praktijk",
+    "feature6": "Methodische lichaamsbehandelingen",
+    "feature7": "Persoonlijke aandacht",
+    "feature8": "Moderne praktijk",
+    "viewTreatments": "Bekijk onze behandelingen"
+  },
+  "treatments": {
+    "fascia": {
+      "title": "Gantke® Fascia Behandeling",
+      "description": "Gantke® Fascia Therapie heeft de Wellness innovatieprijs 2017 gewonnen in Duitsland en is speciaal gericht op het dieper gelegen bindweefsel in het gehele lichaam.",
+      "details": "Cliënten met specifieke problemen en met langer aanhoudende en steeds terugkerende klachten hebben vooral baat bij deze behandeling.",
+      "specialist": "Als specialist ben ik, binnen de Haarlemmermeer, de enige behandelaar/docent die deze bijzondere en unieke Award Winning fascia behandeling aanbied.",
+      "training": "Mijn opleiding heb ik afgerond bij Gantke® Akademie für Ganzheitliche Körperarbeit te Dortmund Duitsland en ben als partner en docent gelicenseerd om de behandeling binnen mijn praktijk uit te voeren."
+    },
+    "facial": {
+      "title": "Gezichtsbehandelingen",
+      "intro": "Een gevoel van Wellness, een moment voor jezelf en lief zijn voor jezelf en je huid?",
+      "description": "Beleef de gezichtsbehandeling van Iris Kooij. Alle gezichtsbehandelingen met natuurlijke en hoogwaardige producten van Pharmos Natur en met het Verse Biologische Aloë Vera Blad.",
+      "pharmos": "Pharmos Natur is een 100% natuurlijk Cosmetica product",
+      "treatment1": "Pharmos Natur Schoonheidsbehandelingen 50 minuten",
+      "treatment2": "Pharmos Natur Schoonheidsbehandelingen 80 minuten",
+      "treatment3": "Luxe Pharmos Natur Rohini behandeling 120 min"
+    }
+  },
+  "professionals": {
+    "title": "Voor Professionals",
+    "subtitle": "Professionele opleidingen en trainingen"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Stel hieronder je vraag. Wij nemen zo spoedig mogelijk contact met je op!",
+    "name": "Je naam",
+    "email": "Je e-mailadres",
+    "phone": "Telefoonnummer",
+    "subject": "Onderwerp",
+    "treatment": "Behandeling",
+    "message": "Je bericht",
+    "captcha": "Hoeveel tenen zitten aan een voet?",
+    "send": "Verstuur bericht",
+    "address": "Crommelinbaan 29K, 2142 EX Cruquius",
+    "required": "verplicht"
+  },
+  "footer": {
+    "tagline": "Natuurlijke Beauty & Fascia Behandelingen",
+    "rights": "Alle rechten voorbehouden"
+  }
+}

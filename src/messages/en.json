@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "home": "Home",
+    "treatments": "Treatments",
+    "professionals": "Professionals",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "Welcome to IK | Iris Kooij",
+    "subtitle": "Natural Beauty and Fascia Treatments",
+    "hero": "Experience the Award Winning fascia treatment by Gantke®!",
+    "cta": "More info",
+    "booking": "Make an appointment",
+    "usp": "As the only Gantke Fascia therapist in Haarlemmermeer, you can visit IK for this unprecedented treatment!",
+    "problem1": "You want to scream, all that tension in your body.",
+    "problem2": "One treatment after another... and you still have the feeling that nothing has been resolved.",
+    "problem3": "It costs you so much time. Precious time that you would rather spend on the fun things in life.",
+    "solution": "With Gantke Fascia Therapy, I guide you on your path to more freedom of movement.",
+    "solutionDetails": "After a body structure analysis, we work, in a process, on the cause of the complaints. Step by step, being able to do the things you enjoy again.",
+    "cta2": "Does it sound interesting and would you like to know what Gantke Fascia therapy could mean in your life? Send me an email and I will contact you as soon as possible!",
+    "featuresTitle": "IK | Distinctive in the world of beauty care!",
+    "feature1": "Organic certified products",
+    "feature2": "No Microplastics",
+    "feature3": "Fairtrade",
+    "feature4": "No Parabens or Chemical additives",
+    "feature5": "Environmentally conscious medical pedicure practice",
+    "feature6": "Methodical body treatments",
+    "feature7": "Personal attention",
+    "feature8": "Modern practice",
+    "viewTreatments": "View our treatments"
+  },
+  "treatments": {
+    "fascia": {
+      "title": "Gantke® Fascia Treatment",
+      "description": "Gantke® Fascia Therapy won the Wellness Innovation Award 2017 in Germany and is specifically aimed at the deeper connective tissue throughout the body.",
+      "details": "Clients with specific problems and with longer-lasting and recurring complaints particularly benefit from this treatment.",
+      "specialist": "As a specialist, I am, within Haarlemmermeer, the only therapist/teacher who offers this special and unique Award Winning fascia treatment.",
+      "training": "I completed my training at Gantke® Akademie für Ganzheitliche Körperarbeit in Dortmund, Germany and am licensed as a partner and teacher to perform the treatment within my practice."
+    },
+    "facial": {
+      "title": "Facial Treatments",
+      "intro": "A feeling of Wellness, a moment for yourself and being kind to yourself and your skin?",
+      "description": "Experience the facial treatment at Iris Kooij. All facial treatments with natural and high-quality products from Pharmos Natur and with the Fresh Organic Aloe Vera Leaf.",
+      "pharmos": "Pharmos Natur is a 100% natural Cosmetics product",
+      "treatment1": "Pharmos Natur Beauty Treatment 50 minutes",
+      "treatment2": "Pharmos Natur Beauty Treatment 80 minutes",
+      "treatment3": "Luxury Pharmos Natur Rohini Treatment 120 min"
+    }
+  },
+  "professionals": {
+    "title": "For Professionals",
+    "subtitle": "Professional training and courses"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Ask your question below. We will contact you as soon as possible!",
+    "name": "Your name",
+    "email": "Your email address",
+    "phone": "Phone number",
+    "subject": "Subject",
+    "treatment": "Treatment",
+    "message": "Your message",
+    "captcha": "How many toes are on a foot?",
+    "send": "Send message",
+    "address": "Crommelinbaan 29K, 2142 EX Cruquius",
+    "required": "required"
+  },
+  "footer": {
+    "tagline": "Natural Beauty & Fascia Treatments",
+    "rights": "All rights reserved"
+  }
+}

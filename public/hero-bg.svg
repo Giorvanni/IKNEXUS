@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#faf8f6"/>
+      <stop offset="0.4" stop-color="#f5f3f0"/>
+      <stop offset="1" stop-color="#e8e4df"/>
+    </linearGradient>
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" seed="2"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feBlend mode="multiply" in2="SourceGraphic"/>
+    </filter>
+    <radialGradient id="glow1" cx="30%" cy="40%">
+      <stop offset="0" stop-color="#c9b896" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#c9b896" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="75%" cy="65%">
+      <stop offset="0" stop-color="#8b7d6b" stop-opacity="0.06"/>
+      <stop offset="1" stop-color="#8b7d6b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Base gradient -->
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  
+  <!-- Decorative circles -->
+  <circle cx="600" cy="400" r="350" fill="url(#glow1)"/>
+  <circle cx="1400" cy="700" r="300" fill="url(#glow2)"/>
+  
+  <!-- Subtle texture -->
+  <rect width="1920" height="1080" filter="url(#noise)" opacity="0.025"/>
+  
+  <!-- Minimal geometric accents -->
+  <line x1="100" y1="200" x2="400" y2="200" stroke="#c9b896" stroke-width="1" opacity="0.15"/>
+  <line x1="1500" y1="850" x2="1800" y2="850" stroke="#8b7d6b" stroke-width="1" opacity="0.12"/>
+  <circle cx="200" cy="900" r="2" fill="#c9b896" opacity="0.3"/>
+  <circle cx="1700" cy="250" r="2" fill="#8b7d6b" opacity="0.3"/>
+</svg>

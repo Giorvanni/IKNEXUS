@@ -1,0 +1,6 @@
+﻿<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="200" cy="200" r="180" fill="#046344"/>
+  <circle cx="200" cy="200" r="150" fill="#B8860B"/>
+  <text x="200" y="190" font-family="Georgia, serif" font-size="60" fill="#F8F8F7" text-anchor="middle">IRIS</text>
+  <text x="200" y="230" font-family="Georgia, serif" font-size="18" fill="#F8F8F7" text-anchor="middle">RITUELEN</text>
+</svg>

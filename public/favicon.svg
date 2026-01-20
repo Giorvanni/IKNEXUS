@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <style>
+      .bg{fill:#f5f3f0}
+      .fg{fill:#2c2c2c;font-family:Georgia, 'Times New Roman', serif}
+    </style>
+  </defs>
+  <rect class="bg" width="64" height="64" rx="8" ry="8"/>
+  <text class="fg" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="28" letter-spacing="2">IK</text>
+</svg>

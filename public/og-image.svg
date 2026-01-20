@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#faf8f6"/>
+      <stop offset="1" stop-color="#e8e4df"/>
+    </linearGradient>
+    <style>
+      .title{fill:#2c2c2c;font-family:Georgia, 'Times New Roman', serif;font-weight:400}
+      .subtitle{fill:#6b6b6b;font-family:Georgia, 'Times New Roman', serif}
+      .rule{stroke:#c9b896;stroke-width:1}
+    </style>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <g transform="translate(0,20)">
+    <line x1="100" y1="140" x2="1100" y2="140" class="rule"/>
+    <text x="600" y="300" text-anchor="middle" class="title" font-size="88" letter-spacing="8">IRIS KOOIJ</text>
+    <text x="600" y="360" text-anchor="middle" class="subtitle" font-size="28" letter-spacing="3">Rituelen voor lichaam, huid en geest</text>
+    <text x="600" y="400" text-anchor="middle" class="subtitle" font-size="22" letter-spacing="2">Hoofddorp · Nederland</text>
+  </g>
+</svg>

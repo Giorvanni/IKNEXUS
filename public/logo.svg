@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400">
+  <circle cx="200" cy="200" r="180" fill="none" stroke="#8BC34A" stroke-width="8"/>
+  <circle cx="200" cy="200" r="165" fill="none" stroke="#555" stroke-width="6"/>
+  <text x="200" y="240" font-family="Arial, sans-serif" font-size="140" font-weight="bold" fill="#555" text-anchor="middle">IK</text>
+  <text x="450" y="240" font-family="Arial, sans-serif" font-size="120" fill="#555">Iris Kooij</text>
+  <text x="100" y="340" font-family="Brush Script MT, cursive" font-size="48" fill="#8BC34A">Natuurlijke Beauty & Fascia Behandelingen</text>
+</svg>

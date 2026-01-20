@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <rect width="800" height="800" fill="#0d3327"/>
+  <path d="M400 200c80 0 145 65 145 145s-65 145-145 145-145-65-145-145 65-145 145-145z" fill="#046344" opacity="0.3"/>
+  <text x="400" y="420" font-size="44" font-family="Georgia, serif" fill="#ffffff" text-anchor="middle">Essential Diffuser</text>
+  <text x="400" y="465" font-size="22" font-family="Arial, sans-serif" fill="#d6d6d6" text-anchor="middle">Placeholder Image</text>
+</svg>

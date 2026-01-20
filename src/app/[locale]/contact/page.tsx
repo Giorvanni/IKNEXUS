@@ -13,6 +13,7 @@ export default function ContactPage({ params: { locale } }: { params: { locale: 
   const [formStatus, setFormStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);

@@ -5,7 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Award, Users, Heart, Sparkles } from 'lucide-react';
+import { Award, Heart, Sparkles } from 'lucide-react';
 
 export default function FasciaPage({ params: { locale } }: { params: { locale: string } }) {
   const t = useTranslations('treatments.fascia');
